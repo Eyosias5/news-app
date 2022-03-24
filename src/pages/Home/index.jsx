@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Card from "../../components/Card";
 import { useMediaStack } from "../../hooks/useMediaStack";
 const Home = () => {
-  const { loading, filteredData, search } = useMediaStack();
+  const { loading, data, search } = useMediaStack();
 
   const [searchWord, setSearchWord] = useState("");
 
   const handleChange = (e) => {
     setSearchWord(e.target.value);
-    search(searchWord);
+    search(e.target.value);
   };
 
   return (
@@ -24,10 +24,10 @@ const Home = () => {
           <p>Loading ... </p>
         ) : (
           <div className="flex flex-col gap-4 mx-8">
-            {filteredData.length === 0 && (
+            {data.length === 0 && (
               <h2 className="text-gray-500">Sorry, Item is not found.</h2>
             )}
-            {filteredData.map((news, index) => (
+            {data.map((news, index) => (
               <a
                 key={index}
                 className="cursor-pointer "
